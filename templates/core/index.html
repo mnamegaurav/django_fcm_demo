@@ -57,6 +57,10 @@
 
     messaging.onMessage((payload)=>{
       console.log(`Message Payload: `,payload)
+      $('#liveToast .toast-icon').attr('src', payload.notification.icon)
+      $('#liveToast .toast-title').text(payload.notification.title)
+      $('#liveToast .toast-body').text(payload.notification.body)
+      $('#liveToast').toast('show')
     })
   </script>
 

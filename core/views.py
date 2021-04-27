@@ -38,8 +38,8 @@ class NotificationView(View):
         notification_icon = form.instance.icon
         notification_image = form.instance.image
 
-        notification_icon_url = request.build_absolute_uri(notification_icon.url) or ''
-        notification_image_url = request.build_absolute_uri(notification_image.url) or ''
+        notification_icon_url = request.build_absolute_uri(notification_icon.url) if notification_icon else ''
+        notification_image_url = request.build_absolute_uri(notification_image.url) if notification_image else ''
 
         devices = FCMDevice.objects.filter(
             registration_id=fcm_token
