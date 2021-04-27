@@ -38,8 +38,6 @@ class NotificationView(View):
         notification_icon = form.instance.icon
         notification_image = form.instance.image
 
-        breakpoint()
-
         notification_icon_url = request.build_absolute_uri(notification_icon.url) or ''
         notification_image_url = request.build_absolute_uri(notification_image.url) or ''
 

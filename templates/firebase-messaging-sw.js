@@ -36,10 +36,10 @@ messaging.onBackgroundMessage((payload)=>{
     body: payload.notification.body,
     icon: payload.notification.icon,
     image: payload.data.image,
-  };
+  }
 
   return self.registration.showNotification(
-    title: notificationTitle,notificationOptions
-  );
-});
+    title: notificationTitle, notificationOptions
+  )
+})
 // [END background_handler]
