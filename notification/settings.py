@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'j0e$8qf3f6!ihsra@38tdu+%=-6jk6y=d#yf^j$+gmqan=-9hy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'fcm_django',
+    'crispy_forms',
 
     'core',
 ]
@@ -154,4 +155,4 @@ REST_FRAMEWORK = {
     ),
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

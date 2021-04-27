@@ -35,11 +35,11 @@ messaging.onBackgroundMessage((payload)=>{
   const notificationOptions = {
     body: payload.notification.body,
     icon: payload.notification.icon,
+    image: payload.data.image,
   };
 
   return self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
+    title: notificationTitle,notificationOptions
   );
 });
 // [END background_handler]
