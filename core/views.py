@@ -24,7 +24,7 @@ class NotificationView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
@@ -32,22 +32,16 @@ class NotificationView(View):
         else:
             context = {'form': form}
 
-        fcm_token = form.cleaned_data.get('fcm_token')
-        notification_text = form.cleaned_data.get('notification_text')
-        notification_title = form.cleaned_data.get('notification_title')
-        notification_icon = form.cleaned_data.get('notification_icon')
-        notification_image = form.cleaned_data.get('notification_image')
+        fcm_token = form.instance.fcm_token
+        notification_body = form.instance.body
+        notification_title = form.instance.title
+        notification_icon = form.instance.icon
+        notification_image = form.instance.image
 
+        breakpoint()
 
-        if notification_icon:
-            notification_icon_url = request.build_absolute_uri(notification_icon.url)
-        else:
-            notification_icon_url = ''
-
-        if notification_image:
-            notification_image_url = request.build_absolute_uri(notification_image.url)
-        else:
-            notification_image_url = ''
+        notification_icon_url = request.build_absolute_uri(notification_icon.url) or ''
+        notification_image_url = request.build_absolute_uri(notification_image.url) or ''
 
         devices = FCMDevice.objects.filter(
             registration_id=fcm_token
@@ -55,7 +49,7 @@ class NotificationView(View):
 
         devices.send_message(
             title=notification_title, 
-            body=notification_text, 
+            body=notification_body, 
             icon=notification_icon_url, 
             data={
                 "image": notification_image_url,
