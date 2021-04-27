@@ -7,14 +7,14 @@ from core.models import NotificationHistory
 # Create your views here.
 
 class IndexView(View):
-    template_name = 'index.html'
+    template_name = 'core/index.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
 
 class NotificationView(View):
-    template_name = 'notification_form.html'
+    template_name = 'core/notification_form.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
