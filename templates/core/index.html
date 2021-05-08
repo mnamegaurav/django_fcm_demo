@@ -72,17 +72,17 @@
     function sendTokenToServer(token) {
       console.log('Sending token to server...');
       // TODO(developer): Send the current token to your server.
-      fetch('devices/', {
+      fetch('http://localhost:8000/api/fcm/device/create/', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'
+            // 'X-CSRFToken': '{{ csrf_token }}'
           },
         body: JSON.stringify({
           'registration_id': token,
           'type': 'web',
         }),
-        credentials: "include",
+        // credentials: "include",
       }).then(function(response) {
         console.log(response);
         setTokenSentToServer(true);
@@ -95,27 +95,6 @@
       } else {
         window.localStorage.setItem('sentToServer', 0);
       }
-    }
-
-    function deleteToken() {
-      // Delete Instance ID token.
-      // [START delete_token]
-      messaging.getToken()
-      .then((token)=>{
-        messaging.deleteToken(token)
-        .then(()=>{
-          console.log('Token deleted.');
-          setTokenSentToServer(false);
-        })
-        .catch((err)=>{
-          console.log('Unable to delete token. ', err);
-        });
-        // [END delete_token]
-      })
-      .catch((err)=>{
-        console.log('Error retrieving Instance ID token. ', err);
-        showToken('Error retrieving Instance ID token. ', err);
-      });
     }
 
 
@@ -142,6 +121,29 @@
           })
       }
     }
+  </script>
+
+  <script type="text/javascript">
+    // function deleteToken() {
+    //   // Delete Instance ID token.
+    //   // [START delete_token]
+    //   messaging.getToken()
+    //   .then((token)=>{
+    //     messaging.deleteToken(token)
+    //     .then(()=>{
+    //       console.log('Token deleted.');
+    //       setTokenSentToServer(false);
+    //     })
+    //     .catch((err)=>{
+    //       console.log('Unable to delete token. ', err);
+    //     });
+    //     // [END delete_token]
+    //   })
+    //   .catch((err)=>{
+    //     console.log('Error retrieving Instance ID token. ', err);
+    //     showToken('Error retrieving Instance ID token. ', err);
+    //   });
+    // }
   </script>
 
 

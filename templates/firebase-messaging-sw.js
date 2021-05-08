@@ -35,11 +35,11 @@ messaging.onBackgroundMessage((payload)=>{
   const notificationOptions = {
     body: payload.notification.body,
     icon: payload.notification.icon,
-    image: payload.data.image,
+    image: payload.data && payload.data.image,
   }
 
   return self.registration.showNotification(
-    title: notificationTitle, notificationOptions
+    notificationTitle, notificationOptions
   )
 })
 // [END background_handler]

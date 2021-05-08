@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'ckeditor',
+
     'rest_framework',
     'fcm_django',
     'crispy_forms',
@@ -156,3 +158,5 @@ REST_FRAMEWORK = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
